@@ -4,7 +4,7 @@ maintainer_email 'andrew@ingenerator.com'
 license 'Apache 2.0'
 description 'Simple standalone helpers for inGenerator cookbooks'
 long_description IO.read(File.join(File.dirname(__FILE__), 'README.md'))
-version '0.1.0'
+version '1.0.0'
 issues_url 'https://github.com/ingenerator/chef-ingenerator-helpers/issues'
 source_url 'https://github.com/ingenerator/chef-ingenerator-helpers'
 
