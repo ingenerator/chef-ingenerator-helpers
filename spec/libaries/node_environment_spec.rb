@@ -28,6 +28,14 @@ describe Ingenerator::Helpers::Node_Environment do
       it "does not match '#{not_environment}'" do
         expect(my_recipe.is_environment?("#{not_environment}")).to be(false)
       end
+
+      it "matches list of :#{not_environment}, :#{is_environment}" do
+        expect(my_recipe.is_environment?(not_environment, is_environment)).to be(true)
+      end
+
+      it "does not match list of :#{not_environment}, :unknown-environment" do
+        expect(my_recipe.is_environment?(not_environment, :'unknown-environment')).to be(false)
+      end
     end
 
     describe 'not_environment?' do
@@ -45,6 +53,14 @@ describe Ingenerator::Helpers::Node_Environment do
 
       it "does not match '#{is_environment}'" do
         expect(my_recipe.not_environment?("#{is_environment}")).to be(false)
+      end
+
+      it "does not match list of :#{not_environment}, :#{is_environment}}" do
+        expect(my_recipe.not_environment?(not_environment, is_environment)).to be(false)
+      end
+
+      it "matches list of :#{not_environment}, :unknown-environment" do
+        expect(my_recipe.not_environment?(not_environment, :'unknown-environment')).to be(true)
       end
 
     end

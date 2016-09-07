@@ -2,14 +2,23 @@ module Ingenerator
   module Helpers
     module Node_Environment
 
-      # Test if this is the specified environment
-      def is_environment?(env)
-        node_environment === env.to_sym
+      # Test if this is one of the specified environment(s)
+      #
+      #   is_environment?(:localdev)
+      #   is_environment?(:localdev, :buildslave) # equivalent to an OR
+      #
+      def is_environment?( * environments)
+        matched = environments.select { | env | node_environment === env.to_sym }
+        matched.any?
       end
 
-      # Test if this is not the specified environment
-      def not_environment?(env)
-        node_environment != env.to_sym
+      # Test if this is not one of the specified environments
+      #
+      #   not_environment?(:localdev)
+      #   not_environment?(:localdev, :buildslave) # equivalent to AND NOT
+      #
+      def not_environment?( * environments)
+        ! is_environment?( * environments)
       end
 
       # Get the current node environment
