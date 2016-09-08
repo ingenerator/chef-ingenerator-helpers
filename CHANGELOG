@@ -5,6 +5,8 @@ This project adheres to [Semantic Versioning](http://semver.org/). Note that
 
 ## Unreleased
 
+* [FEATURE] Helper for the ingenerator_project_name which must be defined in a role
+  before use
 * [FEATURE] Add simple attribute helpers for common cases where we want to reject
   non-customised or legacy attribute definitions
 * [FEATURE] Helpers for our node_environment options

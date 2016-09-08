@@ -3,6 +3,11 @@ require_relative '../../libraries/node_environment.rb'
 
 describe Ingenerator::Helpers::Node_Environment do
   let (:my_recipe) { Class.new { extend Ingenerator::Helpers::Node_Environment }}
+  let (:node)      { Chef::Node.new }
+
+  before :example do
+    allow(my_recipe).to receive(:node).and_return(node)
+  end
 
   shared_examples 'it handles the node_environment as expected' do | is_environment, not_environment |
 
@@ -67,31 +72,42 @@ describe Ingenerator::Helpers::Node_Environment do
   end
 
   context 'when no node_environment is configured' do
-    before(:each) do
-      allow(my_recipe).to receive(:node).and_return({})
-    end
-
     include_examples 'it handles the node_environment as expected', :production, :localdev
   end
 
   context "when node_environment is configured as (string) 'buildslave'" do
-    before(:each) do
-      allow(my_recipe).to receive(:node).and_return({
-        'ingenerator' => {'node_environment' => 'buildslave'}
-      })
+    before :example do
+      node.normal['ingenerator']['node_environment'] = 'buildslave'
     end
 
     include_examples 'it handles the node_environment as expected', :buildslave, :production
   end
 
   context 'when node_environment is configured as (symbol) :localdev' do
-    before(:each) do
-      allow(my_recipe).to receive(:node).and_return({
-        'ingenerator' => {'node_environment' => :localdev}
-      })
+    before :example do
+      node.normal['ingenerator']['node_environment'] = :localdev
     end
 
     include_examples 'it handles the node_environment as expected', :localdev, :production
   end
 
+  describe 'ingenerator_project_name' do
+    context 'when no name is defined (by default)' do
+      it 'raises an exception' do
+        expect {
+          my_recipe.ingenerator_project_name
+        }.to raise_exception ArgumentError
+      end
+    end
+
+    context 'when a name is defined' do
+      before :example do
+        node.normal['project']['name'] = 'ourproject'
+      end
+
+      it 'returns the name' do
+        expect(my_recipe.ingenerator_project_name).to eq('ourproject')
+      end
+    end
+  end
 end

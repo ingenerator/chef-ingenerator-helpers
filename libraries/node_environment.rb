@@ -29,6 +29,18 @@ module Ingenerator
           :production
         end
       end
+
+      # Get the project name - if not assigned, will throw an exception
+      #
+      # @return string
+      # @raise ArgumentArror if the name is not defined
+      def ingenerator_project_name
+        unless node['project'] && node['project']['name']
+          raise ArgumentError.new('You must configure a node[project][name] attribute')
+        end
+        node['project']['name']
+      end
+
     end
   end
 end
