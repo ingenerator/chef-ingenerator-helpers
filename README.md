@@ -14,6 +14,16 @@ Requirements
 - Chef 12.13 or higher
 - **Ruby 2.3 or higher**
 
+Attribute Helpers
+-----------------
+These are available in all recipes:
+
+* raise_if_legacy_attributes - given a list of dot-separated attribute paths, will throw if any are
+  defined. Add to recipes when updating cookbooks and dropping support for old attributes.
+* raise_unless_customised - given a dot-separated attribute path, will throw if the default value
+  has not been overridden.
+
+
 Node environment
 ----------------
 There are various places where configuration of an instance or a particular service depends on the
