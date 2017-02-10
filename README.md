@@ -1,6 +1,6 @@
 inGenerator Helpers cookbook
 ============================
-[![Build Status](https://travis-ci.org/ingenerator/chef-ingenerator-helpers.png?branch=master)](https://travis-ci.org/ingenerator/chef-ingenerator-helpers)
+[![Build Status](https://travis-ci.org/ingenerator/chef-ingenerator-helpers.png?branch=1.x)](https://travis-ci.org/ingenerator/chef-ingenerator-helpers)
 
 The `ingenerator-helpers` cookbook provides simple helpers and reusable code blocks for
 our various chef cookbooks.
@@ -70,6 +70,21 @@ if node['service']['do_thing']
 end
 ```
 
+
+Custom resources
+----------------
+
+## notification_trigger
+
+Sometimes you just want to queue a delayed notification to cause some action to
+happen right at the end of the chef run every time. There's probably an official
+way to do that, but since I can't find one you can do this:
+
+```
+notification_trigger "Make a thing happen" do
+  notifies :restart, 'service[brain]', :delayed
+end
+```
 
 Installation
 ------------
