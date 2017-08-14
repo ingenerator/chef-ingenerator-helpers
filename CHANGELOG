@@ -5,6 +5,8 @@ This project adheres to [Semantic Versioning](http://semver.org/). Note that
 
 ## Unreleased
 
+* Support Chef 13, drop support for ancient Chef 12, exclude build-time files from
+  generated cookbook.
 * [FEATURE] `notification_trigger` resource to trigger notifications
 * [FEATURE] Helper for the ingenerator_project_name which must be defined in a role
   before use

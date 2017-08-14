@@ -11,7 +11,7 @@ reused stuff.
 
 Requirements
 ------------
-- Chef 12.13 or higher
+- Chef 12.18 or higher
 - **Ruby 2.3 or higher**
 
 Attribute Helpers
@@ -91,7 +91,8 @@ Installation
 Add to your `Berksfile` and using [Berkshelf](http://berkshelf.com/):
 
 ```ruby
-cookbook 'ingenerator-helpers', git: 'git://github.com/ingenerator/chef-ingenerator-base', branch: '1.x'
+source 'https://chef-supermarket.ingenerator.com'
+cookbook 'ingenerator-helpers', '~>1.0'
 ```
 
 Other cookbooks should then *depend* on ingenerator-helpers` in their `metadata.rb`
