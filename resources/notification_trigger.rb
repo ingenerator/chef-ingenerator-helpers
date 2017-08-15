@@ -15,7 +15,8 @@ property :name, String, name_property: true
 default_action :queue
 
 action :queue do
-  # Literally all we have to do is pretend this resource did something so chef
-  # triggers its notifications
-  new_resource.updated_by_last_action(true)
+  converge_by 'trigger notification' do
+    # Literally all we have to do is pretend this resource did something so chef
+    # triggers its notifications
+  end
 end

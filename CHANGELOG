@@ -5,6 +5,8 @@ This project adheres to [Semantic Versioning](http://semver.org/). Note that
 
 ## Unreleased
 
+* [INTERNAL] Use converge_by instead of updated_by_last_action to trigger
+  notification_trigger
 * Support Chef 13, drop support for ancient Chef 12, exclude build-time files from
   generated cookbook.
 * [FEATURE] `notification_trigger` resource to trigger notifications
